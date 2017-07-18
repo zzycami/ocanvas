@@ -59,7 +59,8 @@
 			clear: function (keepBackground) {
 
 				// Clear all the image data on the canvas
-				this.core.canvas.clearRect(0, 0, this.core.width, this.core.height);
+				var zoomLevel = this.core.zoomLevel;
+				this.core.canvas.clearRect(0, 0, this.core.width/zoomLevel, this.core.height/zoomLevel);
 				
 				// Redraw the background if it should be kept
 				if (keepBackground !== false) {

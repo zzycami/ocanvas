@@ -269,12 +269,12 @@
 
             var context = this.canvas;
             this.clear();
-            context.translate(this.originx, this.originy);
-            this.originx -= x/(this.zoomLevel*zoomValue) - x/this.zoomLevel;
-            this.originy -= y/(this.zoomLevel*zoomValue) - y/this.zoomLevel;
+            context.translate(this.originX, this.originY);
+            this.originX -= x/(this.zoomLevel*zoomValue) - x/this.zoomLevel;
+            this.originY -= y/(this.zoomLevel*zoomValue) - y/this.zoomLevel;
 
             context.scale(zoomValue, zoomValue);
-            context.translate(-this.originx, -this.originy);
+            context.translate(-this.originX, -this.originY);
             this.zoomLevel *= zoomValue;
             this.redraw();
 		},
