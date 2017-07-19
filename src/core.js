@@ -38,6 +38,10 @@
             this.zoomLevel = 1;
             this.originX = 0;
             this.originY = 0;
+
+            // Shift for canvas
+			this.shiftX = 0;
+			this.shiftY = 0;
 			
 			// Add the registered modules to the new instance of core
 			for (var m in oCanvas.modules) {
@@ -89,6 +93,11 @@
 				set: function (value) {
 					width = !isNaN(parseFloat(value)) ? parseFloat(value) : width;
 					this.canvasElement.width = width;
+                    this.originX = 0;
+                    this.originY = 0;
+                    this.zoomLevel = 0;
+                    this.shiftX = 0;
+                    this.shiftY = 0;
 					this.background.set(this.settings.background);
 					this.redraw();
 				},
@@ -102,6 +111,11 @@
 				set: function (value) {
 					height = !isNaN(parseFloat(value)) ? parseFloat(value) : height;
 					this.canvasElement.height = height;
+                    this.originX = 0;
+                    this.originY = 0;
+                    this.zoomLevel = 0;
+                    this.shiftX = 0;
+                    this.shiftY = 0;
 					this.background.set(this.settings.background);
 					this.redraw();
 				},
@@ -278,6 +292,17 @@
             this.zoomLevel *= zoomValue;
             this.redraw();
 		},
+
+		shift: function (shiftX, shiftY) {
+            this.shiftX = shiftX;
+            this.shiftY = shiftY;
+            var context = this.canvas;
+            this.clear();
+            context.translate(this.shiftX, this.shiftY);
+            if (!this.timeline.running) {
+                this.draw.redraw();
+            }
+        },
 		
 		// Method for removing an object from the canvas
 		removeChild: function (displayobj, redraw) {

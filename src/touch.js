@@ -217,8 +217,8 @@
 					y = this.y;
 				}
                 var zoomLevel = this.core.zoomLevel;
-                var x = x/zoomLevel + this.core.originX;
-                var y = y/zoomLevel + this.core.originY;
+                var x = x/zoomLevel + this.core.originX + this.core.shiftX;
+                var y = y/zoomLevel + this.core.originY + this.core.shiftY;
 				
 				return { x: x, y: y };
 			},
